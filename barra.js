@@ -51,7 +51,7 @@ function Barra() {
 
     this.barreiras = function () {
         if (this.posicao.x < 0) this.posicao.x = 0;
-        else if (this.posicao.x + this.altura > windowWidth) this.posicao.x = windowWidth - this.altura;
+        else if (this.posicao.x + this.altura > width) this.posicao.x = width - this.altura;
     }
 
 }

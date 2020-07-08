@@ -6,15 +6,18 @@ var vidas = 3;
 var fase = false;
 var start = false;
 var pontuacao = 0;
+var pause = false;
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(windowWidth - 20, windowHeight - 20);
     barra = new Barra();
 }
 
 function draw() {
     background(255);
+    noFill();
+    rect(0, 0, width, height);
 
-
+    this.pausar();
     barra.vizualizar();
     barra.movimentar();
     if (start) {
@@ -32,6 +35,7 @@ function draw() {
         text('Sua pontuação foi: ' + pontuacao, width / 2, height / 4);
         listaBolas = [];
     } else {
+        ;
         if (start) {
             textSize(32);
             fill(0);
@@ -55,7 +59,7 @@ function renderizarBola() {
         }
     });
     if (fase) {
-        if (listaBolas.length < 12) {
+        if (listaBolas.length < 30) {
             listaBolas.push(new Bola());
         }
         fase = false;
@@ -70,11 +74,13 @@ function curar() {
     barra.raiva = false;
 }
 function keyPressed() {
-    if (key === 'd') {
+    console.log(key)
+    if (key === 'ArrowRight') {
         barra.esquerda = true;
-    } else if (key === 'a') {
+    } else if (key === 'ArrowLeft') {
         barra.direita = true;
     } else if (key === 'Enter') {
+        loop();
         start = true;
         pontuacao = 0;
         listaBolas = [];
@@ -82,9 +88,20 @@ function keyPressed() {
         vidas = 3;
         this.curar();
         barra.raiva = false;
+    } else if (key === ' ' && start == true) {
+        pause = !pause;
+        pause == true ? noLoop() : loop();
     }
 }
 function keyReleased() {
     barra.esquerda = false;
     barra.direita = false;
+}
+function pausar() {
+    if (pause) {
+        fill(0);
+        rect(width / 2 - 20, height / 2, 20, 40);
+        rect(width / 2 + 20, height / 2, 20, 40)
+
+    }
 }

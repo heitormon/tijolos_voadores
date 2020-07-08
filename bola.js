@@ -2,7 +2,7 @@ function Bola() {
     this.tipo = 1;
     this.posicao = createVector(width, height / 8);
     this.posicao.x = random(0, this.posicao.x);
-    this.velocidade = createVector(1, 1).mult(random(4, 12));
+    this.velocidade = createVector(1, 1).mult(random(6, 12));
     this.direcao = createVector(0, 1);
     this.vizualizar = function () {
         this.fabricarBolinha();
