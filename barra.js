@@ -4,13 +4,17 @@ function Barra() {
 
     this.esquerda = false;
     this.direita = false;
-
+    this.tonta = false;
     this.raiva = false;
 
     this.posicao = createVector(width / 2, height - 40);
 
     this.vizualizar = function () {
-        fill(255, 102, 0);
+        if (this.tonta) {
+            fill(255,0,255);
+        }else{
+            fill(255, 102, 0);
+        }
         rect(this.posicao.x, this.posicao.y, this.altura, this.largura);
         this.face();
     }
@@ -34,12 +38,13 @@ function Barra() {
     }
 
     this.movimentar = function () {
-
+        let velocidade = 10;
+        this.tonta == true ? velocidade *= -1 : velocidade;
         if (this.esquerda) {
-            this.mover(10);
+            this.mover(velocidade);
         }
         else if (this.direita) {
-            this.mover(-10);
+            this.mover(-velocidade);
         }
         this.barreiras();
     }
